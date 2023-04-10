@@ -1,0 +1,61 @@
+#cloud-config
+# vim: syntax=yaml
+#
+# ***********************
+# 	---- for more examples look at: ------
+# ---> https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+# ******************************
+#
+# This is the configuration syntax that the write_files module
+# will know how to understand. encoding can be given b64 or gzip or (gz+b64).
+# The content will be decoded accordingly and then written to the path that is
+# provided.
+#
+# Note: Content strings here are truncated for example purposes.
+preserve_hostname: false
+hostname: ${server_hostname}
+
+users:
+  - name: nartykaly
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcgB6KXAv7ATziI7PDZH9ZqsUa8wppFfvnqMuQGArp1 nartykaly@itwks9186.technodom.kz
+
+ssh_pwauth: True
+chpasswd:
+  list: |
+    root:terraform-libvirt-linux
+  expire: False
+write_files:
+  - path: /etc/ssl/cp.technodom.kz.pem
+    content: |
+      -----BEGIN CERTIFICATE-----
+      MIIC0jCCAbqgAwIBAgIEcmBW3TANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDEw9j
+      cC50ZWNobm9kb20ua3owHhcNMTkwMzI1MDAwMDAwWhcNMjkxMjMxMTIwMDAwWjAa
+      MRgwFgYDVQQDEw9jcC50ZWNobm9kb20ua3owggEiMA0GCSqGSIb3DQEBAQUAA4IB
+      DwAwggEKAoIBAQC8kS7BrvSaMHdYz+xgsLfVVu3j3fEmPzz1Tm9Yv15fLyFlrcAA
+      WEP+YH7iVewY8kRX2kqCCebmW/4onbeFW5oD0jECGnTYPOZg2YREf5cDL6Mg4H/c
+      vikwzhXyy2uYm6FqAImLb+QSEPxTWc6GQy3WahFEop9zj8G2y6+3xaZVdgpnXyz5
+      2D/mHA62/6wRxwo3WKf6lH1/jW4AHrwHIy5su7VVxfoXaywUZwFatUTdqQ3ngISn
+      bOTnCAUaMOpTGhestWUn7VwAQQ6IvKb6DpRo4XpuC/+B5yaApyVl2iGMSd6clxKL
+      HZhlu0lsIT6zALbG3eRAgEPKy3EqsywUuvy3AgMBAAGjIDAeMA8GA1UdEwEB/wQF
+      MAMBAf8wCwYDVR0PBAQDAgGGMA0GCSqGSIb3DQEBCwUAA4IBAQAb3qn7/Xbh0sfk
+      lJpWxuHE1pA5ULmZ1tQ6RRCZ7Zq0C0ifKZu0+aeNmVv1z0zj0Zee3zPaPCTKdy2F
+      zzn0ziLtj6APO3bHZrsXsY31u9KR5y1FyAw0iSRlex4jkQ2Wpr3S1YJ1t0K6yk4o
+      o8vFeMYER0hOq6/6uy5YPjxUjMo+WTPUE4YdATy42CDzaue1jRWlUzuEZQX2NGnT
+      tS9b47HsQj+Bso2yAewjnzSi0v4oLqvPSRNqs17PsqHPsWL3FWL0+d+sz9GZFRY7
+      Rf/gODZk1l/jT9mQDzhA0TKeoL8MPCgbs5+mUkBQYzP7vtT+pxYuVfh7/8b3wgPf
+      ia0HhfhC
+      -----END CERTIFICATE-----
+    permissions: '0644'
+runcmd:
+  - update-ca-trust force-enable
+  - sudo ln -s /etc/ssl/cp.technodom.kz.pem /etc/pki/ca-trust/source/anchors/cp.technodom.kz.pem
+  - update-ca-trust
+  - sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+  - sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+  - yum update -q -y
+  - yum install python3 qemu-guest-agent -q -y
+  - touch /tmp/cloud-init.txt

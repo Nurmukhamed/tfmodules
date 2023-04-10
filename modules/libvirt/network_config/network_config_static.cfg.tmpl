@@ -1,0 +1,10 @@
+version: 2
+ethernets:
+  ${network_interface_name}:
+    dhcp4: false
+    addresses:
+      - ${ipv4_address}/${ipv4_netmask}
+    gateway4: ${ipv4_gateway}
+    nameservers:
+      search: [${dns_domains_search}]
+      addresses: [${dns_servers}]
