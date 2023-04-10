@@ -1,0 +1,16 @@
+# ISO
+*.iso
+*.img
+*.qcow2
+.vagrant
+.terraform
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+*.swp
+config.sh
+inventory
+__pycache__
+*.pyc
+ansible-digital_ocean.cache
+inventory.py
