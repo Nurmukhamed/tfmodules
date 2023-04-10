@@ -14,7 +14,7 @@ provider "libvirt" {
 }
 
 module "pool" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/pool?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/pool?ref=v0.2"
 
   pool_name = "ansible"
   pool_type = "dir"

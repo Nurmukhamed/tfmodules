@@ -14,7 +14,7 @@ provider "libvirt" {
 }
 
 module "pool" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/pool?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/pool?ref=v0.2"
 
   pool_name = "ansible"
   pool_type = "dir"
@@ -22,7 +22,7 @@ module "pool" {
 }
 
 module "volume_without_size" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/volume?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/volume?ref=v0.2"
 
   volume_name = "volume_without_size"
   osname      = "almalinux8"
@@ -31,7 +31,7 @@ module "volume_without_size" {
 }
 
 module "volume_with_size" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/volume?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/volume?ref=v0.2"
 
   volume_name = "volume_with_size"
   osname      = "ubuntu"

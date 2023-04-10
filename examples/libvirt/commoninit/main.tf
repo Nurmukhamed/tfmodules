@@ -20,7 +20,7 @@ resource "random_string" "random_suffix" {
 }
 
 module "pool" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/pool?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/pool?ref=v0.2"
 
   pool_name = "ansible"
   pool_type = "dir"
@@ -28,7 +28,7 @@ module "pool" {
 }
 
 module "commoninit_dynamic" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/commoninit?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/commoninit?ref=v0.2"
 
   hostname          = "test-ubuntu"
   osname            = "ubuntu"
@@ -38,7 +38,7 @@ module "commoninit_dynamic" {
 }
 
 module "commoninit_static" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/commoninit?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/commoninit?ref=v0.2"
 
   hostname          = "test-almalinux"
   osname            = "almalinux8"

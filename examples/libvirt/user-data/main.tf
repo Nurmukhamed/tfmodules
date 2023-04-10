@@ -14,7 +14,7 @@ provider "libvirt" {
 }
 
 module "user_data" {
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/user_data?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/user_data?ref=v0.2"
 
   hostname        = "apache"
   osname          = "ubuntu"

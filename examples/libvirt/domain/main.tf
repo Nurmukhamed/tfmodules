@@ -1,10 +1,10 @@
 terraform {
-  required_version = "= 1.2.4"
+  required_version = "= 1.4.4"
 
   required_providers {
     libvirt = {
       source  = "dmacvicar/libvirt"
-      version = "0.6.14"
+      version = "0.7.1"
     }
   }
 }
@@ -14,7 +14,7 @@ provider "libvirt" {
 }
 
 module "pool" {
-  source = "git::ssh://git@github.com:Nurmukhamed/tfmodules.git/modules/libvirt/pool?ref=v0.1"
+  source = "git::ssh://git@github.com:Nurmukhamed/tfmodules.git/modules/libvirt/pool?ref=v0.2"
 
   pool_name = "ansible"
   pool_type = "dir"
@@ -22,7 +22,7 @@ module "pool" {
 }
 
 module "domain_static" {
-  source = "git::ssh://git@github.com:Nurmukhamed/tfmodules.git/modules/libvirt/domain?ref=v0.1"
+  source = "git::ssh://git@github.com:Nurmukhamed/tfmodules.git/modules/libvirt/domain?ref=v0.2"
 
   pool_name         = module.pool.pool_name
   domain_name       = "test-static"
@@ -34,7 +34,7 @@ module "domain_static" {
 }
 
 module "domain_dynamic" {
-  source = "git::ssh://git@github.com:Nurmukhamed/tfmodules.git/modules/libvirt/domain?ref=v0.1"
+  source = "git::ssh://git@github.com:Nurmukhamed/tfmodules.git/modules/libvirt/domain?ref=v0.2"
 
   pool_name         = module.pool.pool_name
   domain_name       = "test-dynamic"

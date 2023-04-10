@@ -16,7 +16,7 @@ provider "libvirt" {
 #module "network" {
 #  # Simple network, only mandatory fields.
 #
-#  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.1"
+#  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.2"
 #
 #  name = "example"
 #  mode = "none"
@@ -26,7 +26,7 @@ provider "libvirt" {
 #module "network" {
 #  # Simple network with addresses are set and dhcp is enabled.
 #
-#  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.1"
+#  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.2"
 #
 #  name = "example"
 #  mode = "nat"
@@ -37,7 +37,7 @@ provider "libvirt" {
 #module "network" {
 #  # Simple network with addresses are set and dhcp is disabled.
 #
-#  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.1"
+#  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.2"
 #
 #  name = "example"
 #  mode = "nat"
@@ -50,7 +50,7 @@ provider "libvirt" {
 module "network" {
   # Simple network with dns settings, adding hosts records. Dns domain is set.
 
-  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.1"
+  source = "git::https://github.com/Nurmukhamed/tfmodules.git//modules/libvirt/network?ref=v0.2"
 
   name      = "example"
   mode      = "nat"
